@@ -1,0 +1,29 @@
+{
+  "name": "trading-academy",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "validate": "node scripts/validate-source.mjs",
+    "test": "vitest run",
+    "dev": "npm run validate && vite --host",
+    "build": "npm run validate && vite build",
+    "preview": "vite preview --host"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
+    "framer-motion": "^11.11.17",
+    "lucide-react": "^0.468.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^7.9.4"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.14",
+    "@vitejs/plugin-react": "^4.3.4",
+    "tailwindcss": "^4.1.14",
+    "vite": "^5.4.10",
+    "vitest": "^2.1.8"
+  },
+  "description": "Premium Trading Academy education platform built with React, Vite, Supabase, and Cloudflare Pages."
+}
