@@ -57,12 +57,13 @@ export default function Payment() {
 
     setBusy(true)
 
-    // `network` is not a column in the existing payments table. Keep the
-    // selected payment method through payment_method_id when that column is
-    // available, with a compatibility fallback for older schemas.
+    // The existing payments schema requires network_name. Keep the selected
+    // payment method through payment_method_id when available, with a
+    // compatibility fallback for older schemas that do not have that column.
     const payload = {
       user_id: user.id,
       payment_method_id: selected.id,
+      network_name: selected.network_name,
       amount: REQUIRED_AMOUNT_USDT,
       txid,
       status: 'pending',
