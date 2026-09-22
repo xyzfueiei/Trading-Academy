@@ -56,10 +56,13 @@ export default function Payment() {
     if (txid.length < 8 || txid.length > 256) return setMessage({ tone: 'error', text: 'Enter a valid transaction ID/TXID.' })
 
     setBusy(true)
+
+    // `network` is not a column in the existing payments table. Keep the
+    // selected payment method through payment_method_id when that column is
+    // available, with a compatibility fallback for older schemas.
     const payload = {
       user_id: user.id,
       payment_method_id: selected.id,
-      network: selected.network_name,
       amount: REQUIRED_AMOUNT_USDT,
       txid,
       status: 'pending',
@@ -79,7 +82,7 @@ export default function Payment() {
     }
 
     setForm({ txid: '' })
-    setMessage({ tone: 'success', text: 'Payment submitted for review. Access will change only after an authorized administrator approves the payment.' })
+    setMessage({ tone: 'success', text: `Payment submitted for review: ${REQUIRED_AMOUNT_USDT} USDT via ${selected.network_name}. Access will change only after an authorized administrator approves the payment.` })
   }
 
   return <div className="app-shell">
